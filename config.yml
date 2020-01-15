@@ -1,0 +1,9 @@
+# Site settings
+title: Max Kohler
+baseurl: "/rcadd-website/" # the subpath of your site, e.g. /blog/
+url: "https://maxkoehler.com" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+exclude: ["node_modules", "aws-keys.json", "package.json", "gruntfile.js", ".sass-cache", ".git"]
+permalink: /:year/:title/
