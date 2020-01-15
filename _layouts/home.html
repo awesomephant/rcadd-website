@@ -1,0 +1,21 @@
+---
+layout: base
+---
+
+<header class="site-header">
+    <h2>Royal College of Art</h2>
+    <h1>MA Digital Direction 2020</h1>
+</header>
+
+
+<ul class="people">
+    {%for p in site.data.people%}
+    <li class="person">
+        <h3 class="person-name">{{p.Name}}</h3>
+        <span class='person-project'>{{p.Project_Name}}</span>
+        <a href='{{ p.Instagram }}' class='person-website'>{{p.Website}}</a>
+        <a href='{{ p.Instagram }}' class='person-twitter'>{{p.Twitter}}</a>
+        <a href='{{ p.Instagram }}' class='person-instagram'>{{p.Instagram}}</a>
+    </li>
+    {% endfor %}
+</ul>
