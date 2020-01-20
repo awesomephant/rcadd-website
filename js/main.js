@@ -6,7 +6,6 @@ function animate() {
     door.rotation.y += 0.0005;
 
 //    camera.position.z -= .001;
-    camera.rotation.z -= .0001;
     renderer.render(scene, camera);
 };
 
