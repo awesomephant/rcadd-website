@@ -24,11 +24,7 @@
     display: none;
 }
 
-canvas {
+.home-hero {
     position: fixed;
-    top: 0;
-    left: 0;
     z-index: -1000;
-    // background: gray;
-    filter: blur(30px) contrast(10) grayscale(1);
 }
