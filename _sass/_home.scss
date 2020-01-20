@@ -1,6 +1,34 @@
+.people{
+    padding: 1rem;
+    font-size: 2.4rem;
+    padding-top: 100vh;
+    * {
+        color: white;
+    }
+}
 .person {
     display: flex;
+    margin-bottom: .1em;
+
 }
 .person-name {
     margin-right: 6em;
+    flex-basis: 40%;
+    flex-grow: 0;
+}
+
+.person-project {
+    flex-basis: 40%;
+}
+.person-twitter, .person-instagram {
+    display: none;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+    // background: gray;
+    filter: blur(10px) contrast(10) grayscale(1);
 }

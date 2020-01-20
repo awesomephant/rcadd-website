@@ -7,15 +7,19 @@ layout: base
     <h1>MA Digital Direction 2020</h1>
 </header>
 
+<div class="home-hero">
+    
+</div>
 
 <ul class="people">
     {%for p in site.data.people%}
     <li class="person">
-        <h3 class="person-name">{{p.Name}}</h3>
+        <h3 class="person-name"><a href='{{ p.Website }}'>{{p.Name}}</a></h3>
         <span class='person-project'>{{p.Project_Name}}</span>
-        <a href='{{ p.Instagram }}' class='person-website'>{{p.Website}}</a>
-        <a href='{{ p.Instagram }}' class='person-twitter'>{{p.Twitter}}</a>
-        <a href='{{ p.Instagram }}' class='person-instagram'>{{p.Instagram}}</a>
+        <a href='{{ p.Instagram }}' class='person-twitter'>Instagram</a>
+        <a href='{{ p.Twitter }}' class='person-instagram'>Twitter</a>
     </li>
     {% endfor %}
 </ul>
+
+<script src="./js/main.js"></script>
