@@ -37,7 +37,7 @@ function initHero() {
 
     var loader = new THREE.GLTFLoader();
 
-    loader.load('../assets/door.glb', function (gltf) {
+    loader.load('./assets/door.glb', function (gltf) {
         const root = gltf.scene;
         scene.add(root);
         console.log(dumpObject(root).join('\n'));
