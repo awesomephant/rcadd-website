@@ -4,22 +4,27 @@ layout: base
 
 <header class="site-header">
     <h2>Royal College of Art</h2>
-    <h1>MA Digital Direction 2020</h1>
+    <h2>MA Digital Direction 2020</h2>
 </header>
 
 <div class="home-hero">
-    
 </div>
 
 <ul class="people">
     {%for p in site.data.people%}
     <li class="person">
         <h3 class="person-name"><a href='{{ p.Website }}'>{{p.Name}}</a></h3>
+        {% if p.Instagram %}
+        <a href='{{ p.Instagram }}' class='person-instagram'>Instagram</a>
+        {% endif %}
+        {% if p.Twitter %}
+        <a href='{{ p.Twitter }}' class='person-twitter'>Twitter</a>
+        {% endif %}
         <span class='person-project'>{{p.Project_Name}}</span>
-        <a href='{{ p.Instagram }}' class='person-twitter'>Instagram</a>
-        <a href='{{ p.Twitter }}' class='person-instagram'>Twitter</a>
     </li>
     {% endfor %}
 </ul>
+
+<canvas id="cursor" class='cursor-container'></canvas>
 
 <script src="./js/main.js"></script>

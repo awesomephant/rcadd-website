@@ -1,30 +1,52 @@
 .people{
     padding: 1rem;
-    font-size: 2.4rem;
+    font-size: calc(1rem + 1.5vw);
     padding-top: 100vh;
     * {
         color: white;
+        cursor: none;
     }
 }
 .person {
     display: flex;
-    margin-bottom: .1em;
-
+    margin-bottom: -.1em;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: baseline;
+    font-family: $sans;
+    a {
+        transition: 100ms;
+    }
+    a:hover, a:focus {
+        opacity: .6;
+    }
 }
 .person-name {
-    margin-right: 6em;
-    flex-basis: 40%;
-    flex-grow: 0;
+    margin-right: .5em;
 }
 
 .person-project {
-    flex-basis: 40%;
 }
 .person-twitter, .person-instagram {
-    display: none;
+    margin-right: .5em;
+    font-family: $sans;
+    text-decoration: underline;
+    border-radius: 2em;
 }
 
 .home-hero {
     position: fixed;
     z-index: -1000;
+}
+
+.cursor-container {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    z-index: 1000;
+    pointer-events: none;
+    mix-blend-mode: difference;
 }

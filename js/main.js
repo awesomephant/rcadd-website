@@ -1,12 +1,17 @@
-let renderer, scene, camera, door, doorWire;
+let renderer, scene, camera, door, doorWire, cursorCtx;
+let cursorRadius = 10;
 let last_known_scroll_position = 0;
 let ticking = false;
 let currentBlur = 0;
 let container = null;
 
 function handleScroll(scroll_pos) {
-    currentBlur = (scroll_pos * .05) - 20;
-//    container.style.filter = `blur(${currentBlur}px)`
+    currentValue = 1 - (scroll_pos * .0015);
+    const min = 0;
+    if (currentValue < min) {
+        currentValue = min;
+    }
+    container.style.opacity = `${currentValue}`
 }
 
 window.addEventListener('scroll', function (e) {
@@ -22,12 +27,12 @@ window.addEventListener('scroll', function (e) {
 
 function animate() {
     requestAnimationFrame(animate);
-    door.rotation.z += 0.0003;
-    doorWire.rotation.z += 0.0003;
-    door.rotation.y += 0.0005;
-    doorWire.rotation.y += 0.0005;
+    door.rotation.z += 0.0001;
+    doorWire.rotation.z += 0.0001;
+    door.rotation.y -= 0.0001;
+    doorWire.rotation.y -= 0.0001;
 
-    //    camera.position.z -= .001;
+    camera.position.z += .00001;
     renderer.render(scene, camera);
 };
 
@@ -43,21 +48,49 @@ function dumpObject(obj, lines = [], isLast = true, prefix = '') {
     return lines;
 }
 
+function drawCursor(mouse) {
+    cursorCtx.clearRect(0, 0, cursorCtx.canvas.width, cursorCtx.canvas.height)
+    cursorCtx.beginPath();
+    cursorCtx.arc(mouse.x, mouse.y, cursorRadius, 0, 2 * Math.PI);
+    cursorCtx.fill();
+}
+
 function initHero() {
     container = document.querySelector('.home-hero')
+    cursorCanvas = document.querySelector('#cursor')
+    cursorCanvas.width =  window.innerWidth;
+    cursorCanvas.height = window.innerHeight;
+    
+    cursorCtx = cursorCanvas.getContext('2d')
+    cursorCtx.fillStyle = 'white'
+
+    window.addEventListener('mousemove', e => {
+        let mousePos = {
+            x: e.clientX,
+            y: e.clientY,
+        }
+        console.log(mousePos)
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                drawCursor(mousePos);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    })
+
     scene = new THREE.Scene();
     const h = (window.innerHeight * 1)
     const w = (window.innerWidth * 1)
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / h, 0.1, 1000);
 
     renderer = new THREE.WebGLRenderer({
-        alpha: true
+        alpha: true,
+        antialias: true
     });
     renderer.setSize(window.innerWidth, h);
     container.appendChild(renderer.domElement);
-
     var loader = new THREE.GLTFLoader();
-
     loader.load('./assets/door.glb', function (gltf) {
         const root = gltf.scene;
         scene.add(root);

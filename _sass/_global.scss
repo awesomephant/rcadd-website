@@ -1,18 +1,27 @@
 body {
     background: $black;
     color: white;
-    font-family: "Untitled Sans Test";
+    font-family: $sans;
     font-size: 1.05rem;
+    cursor: none;
 }
 
 .site-header {
     position: fixed;
-    padding: 1rem;
-    font-size: 1.6rem;
     z-index: 0;
-    letter-spacing: -.01em;
-    color: white;
-    h1, h2 {
+    color: $black;
+    font-size: 1.4rem;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    h2 {
+        padding: .5em .8em;
+        border-radius: 2rem;
+        margin-right: 1em;
+        background: white;
         font-weight: 400;
+        display: block;
     }
 }
