@@ -31,8 +31,10 @@ function animate() {
     doorWire.rotation.z += 0.0001;
     door.rotation.y -= 0.0001;
     doorWire.rotation.y -= 0.0001;
+    door.material.map.offset.x += .00000001;
+    door.material.map.offset.y += .0001;
 
-    camera.position.z += .0001;
+    camera.position.z += .00001;
     renderer.render(scene, camera);
 };
 
@@ -52,6 +54,7 @@ function drawCursor(mouse) {
     cursorCtx.clearRect(0, 0, cursorCtx.canvas.width, cursorCtx.canvas.height)
     cursorCtx.beginPath();
     cursorCtx.arc(mouse.x, mouse.y, cursorRadius, 0, 2 * Math.PI);
+    cursorCtx.fillStyle = 'white';
     cursorCtx.fill();
 }
 
@@ -80,15 +83,16 @@ function initHero() {
     })
 
     scene = new THREE.Scene();
-    const h = (window.innerHeight * 1)
-    const w = (window.innerWidth * 1)
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / h, 0.1, 1000);
+    const scale = 1;
+    const h = (window.innerHeight * scale)
+    const w = (window.innerWidth * scale)
+    camera = new THREE.PerspectiveCamera(65, w / h, 0.1, 1000);
 
     renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: true
     });
-    renderer.setSize(window.innerWidth, h);
+    renderer.setSize(w, h);
     container.appendChild(renderer.domElement);
     var loader = new THREE.GLTFLoader();
     loader.load('./assets/door.glb', function (gltf) {
@@ -102,7 +106,7 @@ function initHero() {
         console.error(error);
     });
 
-    camera.position.z = 3;
+    camera.position.z = 2.5;
 }
 
 

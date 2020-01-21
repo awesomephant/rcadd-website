@@ -1,5 +1,5 @@
 body {
-    background: $black;
+    background: $lightgray;
     color: white;
     font-family: $sans;
     font-size: 1.05rem;
@@ -11,16 +11,20 @@ body {
     z-index: 0;
     color: $black;
     font-size: 1.4rem;
-    top: 1rem;
-    left: 1rem;
+    top: 0;
+    left: 0;
     display: flex;
     width: 100%;
+    padding: 1rem;
+    padding-bottom: 4rem;
     justify-content: space-between;
     h2 {
         padding: .5em .8em;
         border-radius: 2rem;
         margin-right: 1em;
         background: white;
+        transform: scaleX(1);
+        transform-origin: left;
         font-weight: 400;
         display: block;
     }
