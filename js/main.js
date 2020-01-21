@@ -32,7 +32,7 @@ function animate() {
     door.rotation.y -= 0.0001;
     doorWire.rotation.y -= 0.0001;
 
-    camera.position.z += .00001;
+    camera.position.z += .0001;
     renderer.render(scene, camera);
 };
 

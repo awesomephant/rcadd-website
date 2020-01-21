@@ -37,6 +37,7 @@
 .home-hero {
     position: fixed;
     z-index: -1000;
+    filter: blur(5px) contrast(8);
 }
 
 .cursor-container {
