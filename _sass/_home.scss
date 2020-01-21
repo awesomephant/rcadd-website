@@ -37,9 +37,7 @@
 .home-hero {
     position: fixed;
     z-index: -1000;
-//    filter: blur(1px) contrast(5000);
     canvas {
- //       image-rendering: crisp-edges;
         width: 100vw  !important;
         height: 100vh !important;
     }

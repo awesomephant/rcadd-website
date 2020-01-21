@@ -1,3 +1,7 @@
+::selection {
+    background: $black;
+    color: white !important;
+}
 body {
     background: $lightgray;
     color: white;
@@ -13,19 +17,24 @@ body {
     font-size: 1.4rem;
     top: 0;
     left: 0;
-    display: flex;
-    width: 100%;
+    display: block;
     padding: 1rem;
     padding-bottom: 4rem;
+    flex-flow: column;
+    width: 24rem;
     justify-content: space-between;
+
     h2 {
         padding: .5em .8em;
+        padding-bottom: .4em;
         border-radius: 2rem;
         margin-right: 1em;
+        margin-bottom: .5em;
         background: white;
         transform: scaleX(1);
         transform-origin: left;
         font-weight: 400;
-        display: block;
+        display: inline-block;
+        flex-shrink: 1;
     }
 }
