@@ -2,6 +2,9 @@
     padding: 1rem;
     font-size: calc(1rem + 1.5vw);
     padding-top: 100vh;
+    list-style: none;
+    transform: scaleX(.92);
+    transform-origin: left;
     * {
         color: white;
         cursor: none;

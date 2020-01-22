@@ -1,5 +1,6 @@
 let renderer, scene, camera, door, doorWire, cursorCtx;
-let cursorRadius = 10;
+let cursorRadius = 8;
+let CurrentCursorRadius = 8;
 let last_known_scroll_position = 0;
 let ticking = false;
 let currentBlur = 0;
@@ -51,9 +52,10 @@ function dumpObject(obj, lines = [], isLast = true, prefix = '') {
 }
 
 function drawCursor(mouse) {
+    CurrentCursorRadius += (cursorRadius - CurrentCursorRadius) * .2;
     cursorCtx.clearRect(0, 0, cursorCtx.canvas.width, cursorCtx.canvas.height)
     cursorCtx.beginPath();
-    cursorCtx.arc(mouse.x, mouse.y, cursorRadius, 0, 2 * Math.PI);
+    cursorCtx.arc(mouse.x, mouse.y, CurrentCursorRadius, 0, 2 * Math.PI);
     cursorCtx.fillStyle = 'white';
     cursorCtx.fill();
 }
@@ -61,11 +63,21 @@ function drawCursor(mouse) {
 function initHero() {
     container = document.querySelector('.home-hero')
     cursorCanvas = document.querySelector('#cursor')
-    cursorCanvas.width =  window.innerWidth;
+    cursorCanvas.width = window.innerWidth;
     cursorCanvas.height = window.innerHeight;
-    
+
     cursorCtx = cursorCanvas.getContext('2d')
     cursorCtx.fillStyle = 'white'
+
+    let links = document.querySelectorAll('a');
+    for (let i = 0; i < links.length; i++) {
+        links[i].addEventListener('mouseover', function () {
+            cursorRadius = 16;
+        })
+        links[i].addEventListener('mouseout', function () {
+            cursorRadius = 8;
+        })
+    }
 
     window.addEventListener('mousemove', e => {
         let mousePos = {
