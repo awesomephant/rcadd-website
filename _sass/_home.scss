@@ -30,7 +30,8 @@
     flex-wrap: wrap;
     min-height: 3em;
     @include bp(m) {
-        margin-bottom: -.1em;
+        min-height: auto;
+        margin-bottom: -0em;
     }
     width: 100%;
     justify-content: flex-start;
@@ -43,8 +44,8 @@
         transition: 100ms;
     }
 
-    a:hover,
-    a:focus {
+    &:hover,
+    &:focus {
         opacity: .6;
     }
 }
