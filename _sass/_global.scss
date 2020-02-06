@@ -7,14 +7,19 @@ body {
     color: white;
     font-family: $sans;
     font-size: 1.05rem;
-    cursor: none;
+    @include bp(m){
+        cursor: none;
+    }
 }
 
 .site-header {
-    position: fixed;
+    font-size: 1.2rem;
+    @include bp(m){
+        position: fixed;
+        font-size: 1.4rem;
+    }
     z-index: 0;
     color: $black;
-    font-size: 1.4rem;
     top: 0;
     left: 0;
     display: block;

@@ -1,0 +1,23 @@
+.thumbnail {
+    opacity: 0;
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    transform: translateY(-107%) scale(.95);
+    transition: transform $fast, opacity $fast;
+    img {
+        width: auto;
+        max-width: 35vw;
+        max-height: 35vh;
+    }
+    [src='']{
+        display: none;
+    }
+}
+
+.hovering-name {
+    .thumbnail {
+        transform: translateY(-110%) scale(1);
+        opacity: 1;
+    }
+}

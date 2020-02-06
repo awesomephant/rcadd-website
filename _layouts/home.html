@@ -11,17 +11,20 @@ layout: base
 <div class="home-hero"></div>
 
 <ul class="people">
-    <li>
-        <h3>People</h3>
-    </li>
+    <li><h3 class='section-title'>People</h3></li>
     {%for p in site.data.people%}
-    <li class="person">
+    <li data-thumb='{{p.thumb}}' class="person">
+        <img src="/assets/thumbs/{{p.thumb}}" alt="{{p.Name}} Thumbnail" class="person-thumb">
         <h3 class="person-name"><a href='{{ p.Website }}'>{{p.Name}}</a></h3>
         {% if p.Instagram %}
         <a href='{{ p.Instagram }}' class='person-instagram'>Instagram</a>
+        {% else %}
+        <span class="person-instagram"></span>
         {% endif %}
         {% if p.Twitter %}
         <a href='{{ p.Twitter }}' class='person-twitter'>Twitter</a>
+        {% else %}
+            <span class="person-twitter"></span>
         {% endif %}
         <span class='person-project'>{{p.Project_Name}}</span>
     </li>
@@ -29,5 +32,5 @@ layout: base
 </ul>
 
 <canvas id="cursor" class='cursor-container'></canvas>
-
+<div class="thumbnail"><img src="" alt=""></div>
 <script src="./js/main.js"></script>

@@ -1,4 +1,4 @@
-let renderer, scene, camera, door, doorWire, cursorCtx;
+let renderer, scene, camera, door, doorWire, cursorCtx, thumbImage, thumbEl;
 let cursorRadius = 8;
 let CurrentCursorRadius = 8;
 let last_known_scroll_position = 0;
@@ -7,7 +7,7 @@ let currentBlur = 0;
 let container = null;
 
 function handleScroll(scroll_pos) {
-    currentValue = 1 - (scroll_pos * .0015);
+    currentValue = 1 - (scroll_pos * .0035);
     const min = 0;
     if (currentValue < min) {
         currentValue = min;
@@ -60,6 +60,15 @@ function drawCursor(mouse) {
     cursorCtx.fill();
 }
 
+function moveThumbnail(mousePos) {
+    thumbEl.style.left = (mousePos.x - 10) + 'px';
+    thumbEl.style.top =  (mousePos.y - 5) + 'px';
+
+    if (mousePos.y < thumbEl.getBoundingClientRect().height + 50) {
+        thumbEl.style.top = `${thumbEl.getBoundingClientRect().height + 50}px`;
+    }
+}
+
 function initHero() {
     container = document.querySelector('.home-hero')
     cursorCanvas = document.querySelector('#cursor')
@@ -84,10 +93,10 @@ function initHero() {
             x: e.clientX,
             y: e.clientY,
         }
-        console.log(mousePos)
         if (!ticking) {
             window.requestAnimationFrame(function () {
                 drawCursor(mousePos);
+                moveThumbnail(mousePos);
                 ticking = false;
             });
             ticking = true;
@@ -125,4 +134,27 @@ function initHero() {
 
 window.addEventListener('DOMContentLoaded', function () {
     initHero()
+
+    thumbEl = document.querySelector('.thumbnail')
+    thumbImage = document.querySelector('.thumbnail img')
+    let allPeople = document.querySelectorAll('.person')
+
+    for (let i = 0; i < allPeople.length; i++) {
+        let p = allPeople[i];
+        p.addEventListener('mouseover', function (e) {
+            document.body.classList.add('hovering-name')
+            let name = this.innerText.replace(' ', '-');
+            let filename = this.getAttribute('data-thumb')
+            if (filename) {
+                thumbImage.setAttribute('src', `/assets/thumbs/${filename}`)
+            } else {
+                thumbImage.setAttribute('src', ``)
+            }
+
+        })
+        p.addEventListener('mouseout', function () {
+            document.body.classList.remove('hovering-name')
+        })
+    }
+
 })

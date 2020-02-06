@@ -1,46 +1,109 @@
-.people{
+.people {
     padding: 1rem;
-    font-size: calc(1rem + 1.5vw);
+    font-size: 1.2rem;
+
+    @include bp(m) {
+        font-size: calc(1.5rem + .5vw);
+    }
+
     padding-top: 100vh;
     list-style: none;
     transform-origin: left;
-    * {
+    a {
         color: white;
-        cursor: none;
+        @include bp(m){
+            cursor: none;
+        }
     }
 }
+
+.section-title {
+    margin-bottom: 2em;
+    @include bp(m){
+        margin-bottom: .5em;
+    }
+}
+
 .person {
     display: flex;
-    margin-bottom: -.1em;
+    margin-bottom: .5em;
+    flex-wrap: wrap;
+    min-height: 3em;
+    @include bp(m) {
+        margin-bottom: -.1em;
+    }
     width: 100%;
     justify-content: flex-start;
     align-items: baseline;
     font-family: $sans;
+    position: relative;
+    line-height: 1.2;
+
     a {
         transition: 100ms;
     }
-    a:hover, a:focus {
+
+    a:hover,
+    a:focus {
         opacity: .6;
     }
 }
+
 .person-name {
-    margin-right: .5em;
+    flex-basis: 100%;
+    @include bp(m) {
+        flex-basis: 30%;
+    }
+}
+
+.person-thumb {
+    width: 4em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    flex-shrink: 0;
+    border-radius: 30px;
+    @include bp(m){
+        display: none;
+    }
 }
 
 .person-project {
+    font-style: italic;
+    flex-basis: 100%;
+    padding-right: 7em;
+    line-height: 1.1;
+    @include bp(m) {
+        padding-right: 0;
+        flex-basis: auto;
+    }
 }
-.person-twitter, .person-instagram {
-    margin-right: .5em;
+
+.person-instagram {
+    @include bp(m) {
+        flex-basis: 5.5em;
+    }
+}
+
+.person-twitter {
+    @include bp(m) {
+        flex-basis: 4em;
+    }
+}
+
+.person-twitter,
+.person-instagram {
     font-family: $sans;
     text-decoration: underline;
-    border-radius: 2em;
+    flex-shrink: 1;
 }
 
 .home-hero {
     position: fixed;
     z-index: -1000;
+
     canvas {
-        width: 100vw  !important;
+        width: 100vw !important;
         height: 100vh !important;
     }
 }

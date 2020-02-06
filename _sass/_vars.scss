@@ -3,3 +3,32 @@ $lightgray: rgb(207, 207, 207);
 $green: rgb(251, 255, 0);
 $sans: Untitled Sans Test, sans-serif;
 $serif: Times New Roman, serif;
+$fast: 200ms;
+
+@mixin bp($point) {
+    @if $point==xl {
+        @media (min-width: 95rem) {
+            @content;
+        }
+    }
+    @else if $point==l {
+        @media (min-width:65rem) {
+            @content;
+        }
+    }
+    @else if $point==m {
+        @media (min-width: 40rem) {
+            @content;
+        }
+    }
+    @else if $point==ms {
+        @media (min-width: 38rem) {
+            @content;
+        }
+    }
+    @else if $point==s {
+        @media (min-width: 35rem) {
+            @content;
+        }
+    }
+}
