@@ -28,15 +28,18 @@ window.addEventListener('scroll', function (e) {
 
 function animate() {
     requestAnimationFrame(animate);
-    door.rotation.z += 0.0001;
-    //doorWire.rotation.z += 0.0001;
-    door.rotation.y -= 0.0001;
-    //doorWire.rotation.y -= 0.0001;
-    door.material.map.offset.x += .00000001;
-    door.material.map.offset.y += .0001;
+    if (door){
 
-    camera.position.z += .00001;
-    renderer.render(scene, camera);
+        door.rotation.z += 0.0001;
+        //doorWire.rotation.z += 0.0001;
+        door.rotation.y -= 0.0001;
+        //doorWire.rotation.y -= 0.0001;
+        door.material.map.offset.x += .00000001;
+        door.material.map.offset.y += .0001;
+        
+        camera.position.z += .00001;
+        renderer.render(scene, camera);
+    }
 };
 
 function dumpObject(obj, lines = [], isLast = true, prefix = '') {
@@ -62,15 +65,14 @@ function drawCursor(mouse) {
 
 function moveThumbnail(mousePos) {
     thumbEl.style.left = (mousePos.x - 10) + 'px';
-    thumbEl.style.top =  (mousePos.y - 5) + 'px';
+    thumbEl.style.top = (mousePos.y - 5) + 'px';
 
     if (mousePos.y < thumbEl.getBoundingClientRect().height + 50) {
         thumbEl.style.top = `${thumbEl.getBoundingClientRect().height + 50}px`;
     }
 }
 
-function initHero() {
-    container = document.querySelector('.home-hero')
+function initCursor() {
     cursorCanvas = document.querySelector('#cursor')
     cursorCanvas.width = window.innerWidth;
     cursorCanvas.height = window.innerHeight;
@@ -87,22 +89,12 @@ function initHero() {
             cursorRadius = 8;
         })
     }
+}
 
-    window.addEventListener('mousemove', e => {
-        let mousePos = {
-            x: e.clientX,
-            y: e.clientY,
-        }
-        if (!ticking) {
-            window.requestAnimationFrame(function () {
-                drawCursor(mousePos);
-                moveThumbnail(mousePos);
-                ticking = false;
-            });
-            ticking = true;
-        }
-    })
-
+function initHero() {
+    container = document.querySelector('.home-hero')
+    container.innerHTML = ''
+    
     scene = new THREE.Scene();
     const scale = 1;
     const h = (window.innerHeight * scale)
@@ -121,19 +113,20 @@ function initHero() {
         scene.add(root);
         console.log(dumpObject(root).join('\n'));
         door = root.getObjectByName('door');
+        camera.position.z = 2.5;
         //doorWire = root.getObjectByName('doorWire');
-        animate();
     }, undefined, function (error) {
         console.error(error);
     });
 
-    camera.position.z = 2.5;
 }
 
 
 
 window.addEventListener('DOMContentLoaded', function () {
     initHero()
+    initCursor()
+    animate();
 
     thumbEl = document.querySelector('.thumbnail')
     thumbImage = document.querySelector('.thumbnail img')
@@ -156,5 +149,24 @@ window.addEventListener('DOMContentLoaded', function () {
             document.body.classList.remove('hovering-name')
         })
     }
+    window.addEventListener('mousemove', e => {
+        let mousePos = {
+            x: e.clientX,
+            y: e.clientY,
+        }
+        if (!ticking) {
+            window.requestAnimationFrame(function () {
+                drawCursor(mousePos);
+                moveThumbnail(mousePos);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    })
+
+    window.addEventListener('resize', e => {
+        initHero()
+        initCursor()
+    })
 
 })
