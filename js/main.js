@@ -139,7 +139,7 @@ window.addEventListener('DOMContentLoaded', function () {
             let name = this.innerText.replace(' ', '-');
             let filename = this.getAttribute('data-thumb')
             if (filename) {
-                thumbImage.setAttribute('src', `/assets/thumbs/${filename}`)
+                thumbImage.setAttribute('src', `./assets/thumbs/${filename}`)
             } else {
                 thumbImage.setAttribute('src', ``)
             }
