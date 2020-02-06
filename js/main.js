@@ -29,9 +29,9 @@ window.addEventListener('scroll', function (e) {
 function animate() {
     requestAnimationFrame(animate);
     door.rotation.z += 0.0001;
-    doorWire.rotation.z += 0.0001;
+    //doorWire.rotation.z += 0.0001;
     door.rotation.y -= 0.0001;
-    doorWire.rotation.y -= 0.0001;
+    //doorWire.rotation.y -= 0.0001;
     door.material.map.offset.x += .00000001;
     door.material.map.offset.y += .0001;
 
@@ -112,7 +112,7 @@ function initHero() {
         scene.add(root);
         console.log(dumpObject(root).join('\n'));
         door = root.getObjectByName('door');
-        doorWire = root.getObjectByName('doorWire');
+        //doorWire = root.getObjectByName('doorWire');
         animate();
     }, undefined, function (error) {
         console.error(error);

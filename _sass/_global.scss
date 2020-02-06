@@ -3,7 +3,7 @@
     color: white !important;
 }
 body {
-    background: $lightgray;
+    background: $black;
     color: white;
     font-family: $sans;
     font-size: 1.05rem;
@@ -25,13 +25,7 @@ body {
     justify-content: space-between;
 
     h2 {
-        padding: .5em .8em;
-        padding-bottom: .4em;
-        border-radius: 2rem;
-        margin-right: 1em;
-        margin-bottom: .5em;
-        background: white;
-        transform: scaleX(1);
+        color: white;
         transform-origin: left;
         font-weight: 400;
         display: inline-block;
