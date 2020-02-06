@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="./css/main.css">
     <script src="./js/three.js"></script>
     <script src="./js/GLTFLoader.js"></script>
+
+    {% for person in site.data.people %}
+	<link rel="prefetch" href="./assets/thumbs/{{person.thumb}}" />
+    {% endfor %}
+    
 </head>
 <body>
     {{content}}
