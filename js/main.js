@@ -72,6 +72,9 @@ function moveThumbnail(mousePos) {
     if (mousePos.y < thumbEl.getBoundingClientRect().height + 50) {
         thumbEl.style.top = `${thumbEl.getBoundingClientRect().height + 50}px`;
     }
+    if (mousePos.x > window.innerWidth - (thumbEl.getBoundingClientRect().width + 32)) {
+        thumbEl.style.left = `${window.innerWidth - (thumbEl.getBoundingClientRect().width + 32)}px`;
+    }
 }
 
 function initCursor() {

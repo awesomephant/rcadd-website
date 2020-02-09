@@ -3,6 +3,7 @@
     position: fixed;
     pointer-events: none;
     top: 0;
+    transform-origin: left;
     transform: translateY(-107%) scale(.95);
     transition: transform $fast, opacity $fast;
     display: none;
@@ -11,8 +12,8 @@
     }
     img {
         width: auto;
-        max-width: 35vw;
-        max-height: 35vh;
+        max-width:  40vw;
+        max-height: 40vh;
     }
     [src='']{
         display: none;
