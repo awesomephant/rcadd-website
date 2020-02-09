@@ -4,15 +4,17 @@ let CurrentCursorRadius = 8;
 let last_known_scroll_position = 0;
 let ticking = false;
 let currentBlur = 0;
-let container = null;
+let container, locationContainer, datesContainer;
 
 function handleScroll(scroll_pos) {
-    currentValue = 1 - (scroll_pos * .0035);
+    currentValue = .9 - (scroll_pos * .0025);
     const min = 0;
     if (currentValue < min) {
         currentValue = min;
     }
     container.style.opacity = `${currentValue}`
+    // locationContainer.style.opacity = `${1 - scroll_pos * .005}`
+    // datesContainer.style.opacity = `${1 - scroll_pos * .005}`
 }
 
 window.addEventListener('scroll', function (e) {
@@ -93,6 +95,8 @@ function initCursor() {
 
 function initHero() {
     container = document.querySelector('.home-hero')
+    locationContainer = document.querySelector('.location')
+    datesContainer = document.querySelector('.dates')
     container.innerHTML = ''
     
     scene = new THREE.Scene();
@@ -139,7 +143,7 @@ window.addEventListener('DOMContentLoaded', function () {
             let name = this.innerText.replace(' ', '-');
             let filename = this.getAttribute('data-thumb')
             if (filename) {
-                thumbImage.setAttribute('src', `./assets/thumbs/${filename}`)
+                thumbImage.setAttribute('src', `./assets/dist/${filename}`)
             } else {
                 thumbImage.setAttribute('src', ``)
             }

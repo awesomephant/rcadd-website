@@ -4,27 +4,45 @@ layout: base
 
 <header class="site-header">
     <h2>Royal College of Art</h2>
-    <h2>MA Digital Direction 2020</h2>
-    <h2>Febuary 20—24</h2>
+    <h1>MA Digital Direction 2020</h1>
 </header>
+<div class="show-info">
+
+    <section class="dates">
+        <h2>Febuary 21–23</h2>
+        <h2 class="pv">Private View</h2>
+        <h2>Febuary 19, 6–8pm</h2>
+    </section>
+    <section class="location">
+        <h2>
+            <span>Kensington Gore</span>
+            <span>Stevens Building</span>
+            <span>London SW7 2EU</span>
+        </h2>
+    </section>
+</div>
 
 <div class="home-hero"></div>
 
 <ul class="people">
-    <li><h3 class='section-title'>People</h3></li>
+    <li>
+        <h3 class='section-title'>People</h3>
+    </li>
     {%for p in site.data.people%}
     <li data-thumb='{{p.thumb}}' class="person">
-        <img src="./assets/thumbs/{{p.thumb}}" alt="{{p.Name}} Thumbnail" class="person-thumb">
+        <div class="person-thumb">
+            <img src="./assets/dist/{{p.thumb}}" alt="{{p.Name}} Thumbnail">
+        </div>
         <h3 class="person-name"><a href='{{ p.Website }}'>{{p.Name}}</a></h3>
         {% if p.Instagram %}
-        <a href='{{ p.Instagram }}' class='person-instagram'>Instagram</a>
+        <a href='{{ p.Instagram }}' class='person-instagram'>@{{p.Instagram}}</a>
         {% else %}
         <span class="person-instagram"></span>
         {% endif %}
         {% if p.Twitter %}
-        <a href='{{ p.Twitter }}' class='person-twitter'>Twitter</a>
+        <a href='{{ p.Twitter }}' class='person-twitter'>@{{p.Twitter}}</a>
         {% else %}
-            <span class="person-twitter"></span>
+        <span class="person-twitter"></span>
         {% endif %}
         <span class='person-project'>{{p.Project_Name}}</span>
     </li>

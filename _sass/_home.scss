@@ -1,14 +1,8 @@
 .people {
-    padding: 1rem;
-    font-size: 1.2rem;
-
-    @include bp(m) {
-        font-size: calc(1.5rem + .5vw);
-    }
-
-    padding-top: 100vh;
     list-style: none;
     transform-origin: left;
+    grid-row: 4;
+    grid-column: 1 / 13;
     a {
         color: white;
         @include bp(m){
@@ -25,20 +19,17 @@
 }
 
 .person {
-    display: flex;
-    margin-bottom: .5em;
-    flex-wrap: wrap;
-    min-height: 3em;
-    @include bp(m) {
-        min-height: auto;
-        margin-bottom: -0em;
-    }
     width: 100%;
-    justify-content: flex-start;
-    align-items: baseline;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    row-gap: .2em;
+    margin-bottom: .5em;
+    @include bp(m){
+        margin-bottom: .2em;
+    }
     font-family: $sans;
-    position: relative;
-    line-height: 1.2;
+    line-height: 1.1;
+
 
     a {
         transition: 100ms;
@@ -51,57 +42,77 @@
 }
 
 .person-name {
-    flex-basis: 100%;
-    @include bp(m) {
-        flex-basis: 30%;
+    text-decoration: underline;
+    grid-column: 4 / 13;
+    grid-row: 1 / 2;
+    @include bp(m){
+        grid-column: 1 / 4;
     }
 }
 
+[data-thumb=""] img {
+    display: none;
+}
+
 .person-thumb {
-    width: 4em;
-    position: absolute;
-    right: 0;
-    top: 0;
-    flex-shrink: 0;
-    border-radius: 30px;
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    height: 5em;
+    border-radius: 2px;
+    display: block;
+    overflow: hidden;
+    font-size: .5em;
+    img {
+        max-width: 100%;
+    }
     @include bp(m){
+        grid-row: 1 / 1;
         display: none;
     }
 }
 
 .person-project {
-    font-style: italic;
-    flex-basis: 100%;
-    padding-right: 7em;
     line-height: 1.1;
+    grid-column: 4 / 13;
+    grid-row: 2 / 3;
     @include bp(m) {
+        grid-column: 8 / 13;
+        grid-row: 1 / 1;
+    }
+    @include bp(l) {
+        grid-column: 9 / 13;
         padding-right: 0;
         flex-basis: auto;
     }
 }
 
 .person-instagram {
-    @include bp(m) {
-        flex-basis: 5.5em;
+    grid-column: 4 / 7;
+    display: none;
+    @include bp(m){
+        display: block;
     }
 }
 
 .person-twitter {
-    @include bp(m) {
-        flex-basis: 4em;
+    grid-column: 7 / 9;
+    display: none;
+    @include bp(l){
+        display: block;
     }
 }
 
 .person-twitter,
 .person-instagram {
-    font-family: $sans;
-    text-decoration: underline;
-    flex-shrink: 1;
+    text-decoration: none;
 }
 
 .home-hero {
     position: fixed;
     z-index: -1000;
+    left: 0;
+    top: 0;
+    opacity: .9;
 
     canvas {
         width: 100vw !important;

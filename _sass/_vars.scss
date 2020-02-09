@@ -1,4 +1,4 @@
-$black: rgb(7, 7, 6);
+$black: rgb(3, 3, 3);
 $lightgray: rgb(207, 207, 207);
 $green: rgb(251, 255, 0);
 $sans: Untitled Sans Test, sans-serif;
@@ -12,17 +12,12 @@ $fast: 200ms;
         }
     }
     @else if $point==l {
-        @media (min-width:65rem) {
+        @media (min-width:85rem) {
             @content;
         }
     }
     @else if $point==m {
-        @media (min-width: 40rem) {
-            @content;
-        }
-    }
-    @else if $point==ms {
-        @media (min-width: 38rem) {
+        @media (min-width: 50rem) {
             @content;
         }
     }

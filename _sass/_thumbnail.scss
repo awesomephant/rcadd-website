@@ -5,6 +5,10 @@
     top: 0;
     transform: translateY(-107%) scale(.95);
     transition: transform $fast, opacity $fast;
+    display: none;
+    @include bp(m){
+        display: block;
+    }
     img {
         width: auto;
         max-width: 35vw;
