@@ -7,7 +7,7 @@ $fast: 200ms;
 
 @mixin bp($point) {
     @if $point==xl {
-        @media (min-width: 95rem) {
+        @media (min-width: 105rem) {
             @content;
         }
     }

@@ -3,9 +3,14 @@
     transform-origin: left;
     grid-row: 4;
     grid-column: 1 / 13;
+    @include bp(xl) {
+        grid-column: 1 / 12;
+    }
+
     a {
         color: white;
-        @include bp(m){
+
+        @include bp(m) {
             cursor: none;
         }
     }
@@ -13,7 +18,8 @@
 
 .section-title {
     margin-bottom: 2em;
-    @include bp(m){
+
+    @include bp(m) {
         margin-bottom: .5em;
     }
 }
@@ -24,9 +30,11 @@
     grid-template-columns: repeat(12, 1fr);
     row-gap: .2em;
     margin-bottom: .5em;
-    @include bp(m){
+
+    @include bp(m) {
         margin-bottom: .2em;
     }
+
     font-family: $sans;
     line-height: 1.1;
 
@@ -45,7 +53,8 @@
     text-decoration: underline;
     grid-column: 4 / 13;
     grid-row: 1 / 2;
-    @include bp(m){
+
+    @include bp(m) {
         grid-column: 1 / 4;
     }
 }
@@ -62,10 +71,12 @@
     display: block;
     overflow: hidden;
     font-size: .5em;
+
     img {
         max-width: 100%;
     }
-    @include bp(m){
+
+    @include bp(m) {
         grid-row: 1 / 1;
         display: none;
     }
@@ -75,10 +86,12 @@
     line-height: 1.1;
     grid-column: 4 / 13;
     grid-row: 2 / 3;
+
     @include bp(m) {
         grid-column: 8 / 13;
         grid-row: 1 / 1;
     }
+
     @include bp(l) {
         grid-column: 9 / 13;
         padding-right: 0;
@@ -89,7 +102,8 @@
 .person-instagram {
     grid-column: 4 / 7;
     display: none;
-    @include bp(m){
+
+    @include bp(m) {
         display: block;
     }
 }
@@ -97,7 +111,8 @@
 .person-twitter {
     grid-column: 7 / 9;
     display: none;
-    @include bp(l){
+
+    @include bp(l) {
         display: block;
     }
 }
