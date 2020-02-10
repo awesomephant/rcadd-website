@@ -14,9 +14,11 @@ body {
     @include bp(s){
         font-size: 1.2rem;
     }
+    @include bp(m){
+        cursor: none;
+    }
     @include bp(l){
         font-size: 1.3rem;
-        cursor: none;
     }
     @include bp(xl){
         font-size: 1.6rem;
