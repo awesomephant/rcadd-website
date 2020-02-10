@@ -77,7 +77,8 @@ a {
     }
     
     display: block;
-
+    position: relative;
+    z-index: 2000;
     svg {
         max-width: 100%;
     }
