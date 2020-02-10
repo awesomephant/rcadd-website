@@ -17,7 +17,18 @@
             grid-column: unset;
             grid-row: 5;
         }
-    
+        
+        .dates {
+            grid-row: 5;
+            grid-column: 4 / 7;
+        }
+        
+        .location {
+            grid-row: 5;
+            grid-column: 8 / 12;
+        }
+    }
+    @include bp(l) {
         .dates {
             grid-row: 5;
             grid-column: 4 / 6;
@@ -28,7 +39,7 @@
             grid-column: 6 / 9;
         }
     }
-
+    
     span {
         display: block;
     }
@@ -61,6 +72,9 @@
     }
     @include bp(m) {
         grid-row: 4;
+        grid-column: 4 / 12;
+    }
+    @include bp(l) {
         grid-column: 4 / 11;
     }
     @include bp(xl) {
@@ -183,7 +197,7 @@
     grid-row: 2 / 3;
 
     @include bp(m) {
-        grid-column: 4 / 7;
+        grid-column: 5 / 12;
         grid-row: 1 / 1;
     }
 
@@ -199,7 +213,7 @@
     grid-column: 5 / 7;
     display: none;
     
-    @include bp(m) {
+    @include bp(l) {
         grid-column: 7 / 9;
         display: block;
     }
@@ -211,11 +225,8 @@
 .person-twitter {
     grid-column: 8 / 10;
     display: none;
-    
-    @include bp(l) {
-        display: block;
-    }
     @include bp(xl) {
+        display: block;
         grid-column: 7 / 10;
     }
 }
