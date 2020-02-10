@@ -48,6 +48,7 @@
 
 .intro {
     grid-column: 1 / 13;
+    grid-row: 2;
 
     @include bp(m) {
         display: contents;
@@ -94,6 +95,11 @@
 
     @include bp(m) {
         margin-bottom: 0;
+        position: sticky;
+        top: 1rem;
+    }
+    @include bp(l) {
+        top: 1.5rem;
     }
 }
 
