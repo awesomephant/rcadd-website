@@ -4,7 +4,7 @@ $green: rgb(251, 255, 0);
 $sans: Untitled Sans Test, sans-serif;
 $serif: Times New Roman, serif;
 $fast: 200ms;
-
+$gutter: 2em;
 @mixin bp($point) {
     @if $point==xl {
         @media (min-width: 105rem) {

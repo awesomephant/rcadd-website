@@ -6,48 +6,83 @@ layout: base
     <h2>Royal College of Art</h2>
     <h1>MA Digital Direction 2020</h1>
 </header>
-<div class="show-info">
+<a href="#1" class="rca-logo">
+    {% include rca-logo.svg %}
+</a>
+<div class="home-hero"></div>
 
+<section class="intro">
+    <h3 class="section-title">Introduction</h3>
+    <article class="intro-copy">
+
+        <p>
+            <em>MA Digital Direction is the future of storytelling.</em>
+        </p>
+        <p>
+            Over the last 15 months, we have been wondering what this means.
+
+        </p>
+        <p>
+            Through workshops and collaborative projects emphasizing both criticality and play, our course has been
+            investigating how narratives mediate and are mediated by (post–)digital technologies. Our work is not
+            technologically determined, though. Digital Direction is truly driven by exploring and challenging the
+            limits of
+            storytelling across social and political contexts. This year’s final works engage with environmental
+            concerns,
+            cultural heritage, spirituality, communal experiences in music and the virtualities of storytelling
+            itself<span class='dash'>–</span>to name a few. While these projects all incorporate emergent or immersive technologies, they do so as works of
+            theatre,
+            robotics, film, sound, VR, writing and more.
+        </p>
+        <p>
+            Digital Direction, while difficult to define, has supported us in mapping out new storytelling practices
+            that by
+            no means point in a single direction. Let us show you 23 directions it could take you.
+        </p>
+    </article>
+</section>
+<section class="visit">
+    <h3 class="section-title">Visit</h3>
     <section class="dates">
-        <h2>Febuary 21–23</h2>
-        <h2 class="pv">Private View</h2>
-        <h2>Febuary 19, 6–8pm</h2>
+        <span>Febuary 21–23</span>
+        <span>12–6pm</span>
+        <span class="pv">Private View</span>
+        <span>Febuary 19, 6–8pm</span>
     </section>
     <section class="location">
         <h2>
-            <span>Kensington Gore</span>
+            <span>Royal College of Art</span>
             <span>Stevens Building</span>
+            <span>Kensington Gore</span>
             <span>London SW7 2EU</span>
         </h2>
     </section>
-</div>
-
-<div class="home-hero"></div>
-
-<ul class="people">
-    <li>
-        <h3 class='section-title'>People</h3>
-    </li>
-    {%for p in site.data.people%}
-    <li data-thumb='{{p.thumb}}' class="person">
-        <div class="person-thumb">
-            <img src="./assets/dist/{{p.thumb}}" alt="{{p.Name}} Thumbnail">
-        </div>
-        <h3 class="person-name"><a href='{{ p.Website }}'>{{p.Name}}</a></h3>
-        {% if p.Instagram %}
-        <a href='{{ p.Instagram }}' class='person-instagram'>@{{p.Instagram}}</a>
-        {% else %}
-        <span class="person-instagram"></span>
-        {% endif %}
-        {% if p.Twitter %}
-        <a href='{{ p.Twitter }}' class='person-twitter'>@{{p.Twitter}}</a>
-        {% else %}
-        <span class="person-twitter"></span>
-        {% endif %}
-        <span class='person-project'>{{p.Project_Name}}</span>
-    </li>
-    {% endfor %}
-</ul>
+</section>
+<section class="people">
+    <h3 class="section-title">People</h3>
+    <ul class="people-list">
+        {%for p in site.data.people%}
+        <li data-thumb='{{p.thumb}}' class="person">
+            <div class="person-thumb">
+                <img src="./assets/dist/{{p.thumb}}" alt="{{p.Name}} Thumbnail">
+            </div>
+            <h3 class="person-name"><a href='{{ p.Website }}'>{{p.Name}}</a></h3>
+            <span class='person-project'>{{p.Project_Name}}</span>
+            
+            {% if p.Instagram %}
+            <a href='{{ p.Instagram }}' class='person-instagram'>@{{p.Instagram}}</a>
+            {% else %}
+            <span class="person-instagram"></span>
+            {% endif %}
+            {% if p.Twitter %}
+            <a href='{{ p.Twitter }}' class='person-twitter'>@{{p.Twitter}}</a>
+            {% else %}
+            <span class="person-twitter"></span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 
 <canvas id="cursor" class='cursor-container'></canvas>
 <div class="thumbnail"><img src="" alt=""></div>
