@@ -68,7 +68,8 @@
         background: white;
         font-style: normal;
         color: $black;
-        border-radius: 2px;
+        border-radius: 1px;
+        padding: 1px;
     }
     @include bp(m) {
         grid-row: 4;
@@ -78,7 +79,7 @@
         grid-column: 4 / 11;
     }
     @include bp(xl) {
-        grid-column: 4 / 9;
+        grid-column: 4 / 10;
 
     }
     
