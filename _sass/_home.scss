@@ -91,15 +91,18 @@
 
 .section-title {
     grid-column: 1 / 4;
-    margin-bottom: $gutter / 2;
+    span {
+        display: block;
+        margin-bottom: $gutter / 2;
 
-    @include bp(m) {
-        margin-bottom: 0;
-        position: sticky;
-        top: 1rem;
-    }
-    @include bp(l) {
-        top: 1.5rem;
+        @include bp(m) {
+            margin-bottom: 0;
+            position: sticky;
+            top: 1rem;
+        }
+        @include bp(l) {
+            top: 1.5rem;
+        }
     }
 }
 
