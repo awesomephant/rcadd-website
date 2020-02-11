@@ -1,10 +1,30 @@
 let renderer, scene, camera, door, doorWire, cursorCtx, thumbImage, thumbEl;
-let cursorRadius = 8;
-let CurrentCursorRadius = 8;
+
+let cursor = {
+    width: {
+        target: 18,
+        current: 18
+    },
+    height: {
+        target: 18,
+        current: 18
+    },
+    textOpacity: {
+        target: 0,
+        current: 0
+    }
+}
+
 let last_known_scroll_position = 0;
 let ticking = false;
 let currentBlur = 0;
 let container, locationContainer, datesContainer;
+let mousePos = {
+    x: 0,
+    y: 0,
+}
+let cursorText = '';
+
 
 function handleScroll(scroll_pos) {
     currentValue = .9 - (scroll_pos * .0025);
@@ -30,7 +50,9 @@ window.addEventListener('scroll', function (e) {
 
 function animate() {
     requestAnimationFrame(animate);
-    if (door){
+    drawCursor(mousePos)
+    moveThumbnail(mousePos)
+    if (door) {
 
         door.rotation.z += 0.0001;
         //doorWire.rotation.z += 0.0001;
@@ -38,7 +60,7 @@ function animate() {
         //doorWire.rotation.y -= 0.0001;
         door.material.map.offset.x += .00000001;
         door.material.map.offset.y += .0001;
-        
+
         camera.position.z += .00001;
         renderer.render(scene, camera);
     }
@@ -57,17 +79,25 @@ function dumpObject(obj, lines = [], isLast = true, prefix = '') {
 }
 
 function drawCursor(mouse) {
-    CurrentCursorRadius += (cursorRadius - CurrentCursorRadius) * .2;
+    cursor.width.current += (cursor.width.target - cursor.width.current) * .2;
+    cursor.height.current += (cursor.height.target - cursor.height.current) * .2;
+    cursor.textOpacity.current += (cursor.textOpacity.target - cursor.textOpacity.current) * .15;
+
     cursorCtx.clearRect(0, 0, cursorCtx.canvas.width, cursorCtx.canvas.height)
-    cursorCtx.beginPath();
-    cursorCtx.arc(mouse.x, mouse.y, CurrentCursorRadius, 0, 2 * Math.PI);
+
+    let x = mouse.x - cursor.width.current / 2;
+    let y = mouse.y - cursor.height.current / 2;
     cursorCtx.fillStyle = 'white';
-    cursorCtx.fill();
+    cursorCtx.roundRect(x, y, cursor.width.current, cursor.height.current, 6)
+    cursorCtx.fill()
+
+    cursorCtx.fillStyle = `rgba(0,0,0,${cursor.textOpacity.current})`;
+    cursorCtx.fillText(cursorText, x + 5, y + 5 + cursor.height.current / 2)
 }
 
 function moveThumbnail(mousePos) {
     thumbEl.style.left = (mousePos.x - 10) + 'px';
-    thumbEl.style.top = (mousePos.y - 5) + 'px';
+    thumbEl.style.top = (mousePos.y + 20) + 'px';
 
     if (mousePos.y < thumbEl.getBoundingClientRect().height + 50) {
         thumbEl.style.top = `${thumbEl.getBoundingClientRect().height + 50}px`;
@@ -83,15 +113,47 @@ function initCursor() {
     cursorCanvas.height = window.innerHeight;
 
     cursorCtx = cursorCanvas.getContext('2d')
-    cursorCtx.fillStyle = 'white'
+    cursorCtx.font = '500 14px Untitled Sans, sans-serif'
+    CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+        if (w < 2 * r) r = w / 2;
+        if (h < 2 * r) r = h / 2;
+        this.beginPath();
+        this.moveTo(x + r, y);
+        this.arcTo(x + w, y, x + w, y + h, r);
+        this.arcTo(x + w, y + h, x, y + h, r);
+        this.arcTo(x, y + h, x, y, r);
+        this.arcTo(x, y, x + w, y, r);
+        this.closePath();
+        return this;
+    }
 
     let links = document.querySelectorAll('a');
     for (let i = 0; i < links.length; i++) {
         links[i].addEventListener('mouseover', function () {
-            cursorRadius = 16;
+            cursor.height.target = 18;
+            let href = this.getAttribute('href');
+            if (href.includes('instagram')) {
+                cursorText = 'Instagram'
+            } else if (href.includes('twitter')){
+                cursorText = 'Twitter'
+            } else if (href.includes('maps')){
+                cursorText = 'Google Maps'
+            } else if (href.includes('rca.ac.uk')){
+                cursorText = 'rca.ac.uk'
+            } else {
+                cursorText = href.replace(/(https?:\/\/|www\.|\/$)/g, '')
+            }
+            cursor.width.target = cursorCtx.measureText(cursorText).width + 10;
+            window.setTimeout(function(){
+                cursor.textOpacity.target = 1;
+            }, 70)
+            
         })
         links[i].addEventListener('mouseout', function () {
-            cursorRadius = 8;
+            cursor.width.target = 18;
+            cursor.height.target = 18;
+            cursor.textOpacity.target = 0;
+            cursorText = ''
         })
     }
 }
@@ -101,7 +163,7 @@ function initHero() {
     locationContainer = document.querySelector('.location')
     datesContainer = document.querySelector('.dates')
     container.innerHTML = ''
-    
+
     scene = new THREE.Scene();
     const scale = 1;
     const h = (window.innerHeight * scale)
@@ -133,11 +195,12 @@ function initHero() {
 window.addEventListener('DOMContentLoaded', function () {
     initHero()
     initCursor()
-    animate();
 
     thumbEl = document.querySelector('.thumbnail')
     thumbImage = document.querySelector('.thumbnail img')
     let allPeople = document.querySelectorAll('.person')
+    animate();
+
 
     for (let i = 0; i < allPeople.length; i++) {
         let p = allPeople[i];
@@ -157,17 +220,9 @@ window.addEventListener('DOMContentLoaded', function () {
         })
     }
     window.addEventListener('mousemove', e => {
-        let mousePos = {
+        mousePos = {
             x: e.clientX,
             y: e.clientY,
-        }
-        if (!ticking) {
-            window.requestAnimationFrame(function () {
-                drawCursor(mousePos);
-                moveThumbnail(mousePos);
-                ticking = false;
-            });
-            ticking = true;
         }
     })
 

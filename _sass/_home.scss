@@ -266,7 +266,6 @@
     left: 0;
     position: fixed;
     display: block;
-    z-index: 1000;
+    z-index: 6000;
     pointer-events: none;
-    mix-blend-mode: difference;
 }
