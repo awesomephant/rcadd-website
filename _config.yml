@@ -24,7 +24,15 @@ description: >- # this means to ignore newlines until "baseurl:"
   Royal College of Art – Digital Direction Show 2020
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-exclude: ["*.ai"]
+exclude:
+  - "*.ai"
+  - /assets/thumbs/
+  - /documentation/
+  - /jekyll/
+  - "*.bat"
+  - "*.yml"
+  - "*.blend"
+  - "*.blend1"
 # Build settings
 theme: minima
 plugins:
